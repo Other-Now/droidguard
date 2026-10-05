@@ -1,0 +1,18 @@
+Cmdline: /system/bin/simpleperf record --app dev.droidguard --add-meta-info app_type=profileable --in-app --tracepoint-events /data/local/tmp/tracepoint_events --out-fd 3 --stop-signal-fd 4 -e cpu-clock -f 4000 --call-graph fp --duration 6
+Arch: x86_64
+Event: cpu-clock (type 1, config 0)
+Samples: 1716
+Event count: 429000000
+
+Overhead  Shared Object
+36.19%    /apex/com.android.art/lib64/libart.so
+29.55%    [kernel.kallsyms]
+19.46%    /apex/com.android.runtime/lib64/bionic/libc.so
+5.24%     /data/app/~~yCNnzkGg12WlEB9ZWjGpEA==/dev.droidguard-W81tGGv-nokPOAoSavp_1w==/base.apk!/lib/x86_64/libdroidguard.so
+4.31%     /apex/com.google.mainline.primary.libs@340724000/lib64/libc++.so/bdb4b81337c003ef4ed7bf093ed61675650aa8a45e36ed5ef9e6a41f9f598616e9a7644a51b37d2f939e669f75ae64032f6e8137738202f72e221c99497a5604/libc++.so
+2.39%     [JIT app cache]
+1.86%     /apex/com.android.art/lib64/libdexfile.so
+0.70%     /system/framework/x86_64/boot.oat
+0.12%     /apex/com.android.art/lib64/libartbase.so
+0.12%     /system/lib64/libcutils.so
+0.06%     /apex/com.android.art/lib64/liblz4.so

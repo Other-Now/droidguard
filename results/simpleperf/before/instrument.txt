@@ -1,0 +1,8 @@
+
+dev.droidguard.ScanBenchmarkTest:.
+
+Time: 10.334
+
+OK (1 test)
+
+

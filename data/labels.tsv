@@ -1,0 +1,88 @@
+# Hand-labelled cases for the matcher evaluation (native/host/eval.cpp and the
+# Kotlin twin's JVM test both score against this file).
+#
+# One row = one assertion: for this query, must the matcher report this CVE?
+#   platform: a = release (as mapped from SDK_INT), b = security patch level
+#   kernel:   a = uname -r,                          b = patch level used for the kernel
+#   app:      a = package name,                      b = versionName
+# Labels were written from the source advisory (OSV Android / NVD) by reading the
+# rule, not by running the matcher. The note says why.
+#
+# Kernel truth = patch level behind the bulletin fix AND upstream version inside
+# an NVD range (or no range known). See README "kernel: version vs patch level".
+kind	a	b	cve	expected	note
+platform	12	2021-09-01	CVE-2021-0483	1	12 listed, fix 2021-10-01
+platform	12	2021-10-01	CVE-2021-0483	0	exactly at the fix SPL
+platform	12L	2021-09-01	CVE-2021-0483	0	12L is not listed; 12 != 12L
+platform	13	2021-09-01	CVE-2021-0483	0	13 not listed
+platform	10	2021-09-05	CVE-2021-0483	1	10 listed; -05 still before 2021-10-01
+platform	12L	2022-08-01	CVE-2022-20396	1	12L listed, fix 2022-09-01
+platform	12	2022-08-01	CVE-2022-20396	0	only 12L/13 listed; prefix match on "12" would hit 12L
+platform	13	2022-09-01	CVE-2022-20396	0	at fix
+platform	13	2022-08-05	CVE-2022-20396	1	before fix
+platform	11	2022-08-01	CVE-2022-20396	0	11 not listed
+platform	13	2023-07-01	CVE-2023-20971	1	13 re-issued: fix 2023-06-01 then 2024-08-01; later fix governs
+platform	13	2024-08-01	CVE-2023-20971	0	at the later fix
+platform	11	2023-01-01	CVE-2023-20971	0	11 not listed
+platform	14	2024-07-01	CVE-2024-32896	1	14 re-issued: 2024-06-05 then 2024-09-01
+platform	14	2024-09-01	CVE-2024-32896	0	at the later fix
+platform	15	2024-01-01	CVE-2024-32896	0	15 not listed
+platform	8.1	2020-07-01	CVE-2020-0108	1	8.1 listed, fix 2020-08-01
+platform	8.0	2020-07-01	CVE-2020-0108	0	8.0 not listed
+platform	10	2020-08-01	CVE-2020-0108	0	at fix
+platform	9	2020-07-05	CVE-2020-0108	1	9 listed
+platform	16	2025-11-01	CVE-2025-32319	1	16 only, fix 2025-12-01
+platform	16	2025-12-01	CVE-2025-32319	0	at fix
+platform	15	2025-11-01	CVE-2025-32319	0	15 not listed
+platform	17	2026-09-01	CVE-2026-28613	1	fix is the -05 level; a -01 device is still behind
+platform	17	2026-09-05	CVE-2026-28613	0	at fix
+platform	14	2026-09-01	CVE-2026-28613	1	14 listed
+platform	13	2026-09-01	CVE-2026-28613	0	13 not listed
+platform	13		CVE-2022-20396	0	empty SPL must not read as older-than-everything
+platform	13	unknown	CVE-2022-20396	0	malformed SPL
+platform	12L	2022-11-01	CVE-2022-20449	1	12L listed, fix 2022-12-01
+platform	12	2022-11-01	CVE-2022-20449	0	only 10/11/12L/13 listed
+kernel	4.19.75-android-g1a2b	2020-07-05	CVE-2019-16746	1	4.15<=v<4.19.79 and SPL before 2020-08-05
+kernel	4.19.75-android-g1a2b	2020-08-05	CVE-2019-16746	0	version in range but SPL patched: backport
+kernel	4.19.100	2020-07-05	CVE-2019-16746	0	past upstream fix 4.19.79; old SPL alone over-reports
+kernel	5.4.0	2020-07-05	CVE-2019-16746	0	5.4.0 >= 5.3.6, outside every range
+kernel	4.9.190-perf	2020-07-05	CVE-2019-16746	1	4.5<=v<4.9.197
+kernel	4.9.200	2020-07-05	CVE-2019-16746	0	past 4.9.197
+kernel	4.14.99-g00	2020-07-05	CVE-2019-16746	1	4.10<=v<4.14.149; lexically 4.14.99 > 4.14.149
+kernel	4.14.150	2020-07-05	CVE-2019-16746	0	past 4.14.149
+kernel	5.10.43-android12-9	2020-08-05	CVE-2020-0404	1	no NVD range: SPL decides; before 2020-09-05
+kernel	5.10.43-android12-9	2020-09-05	CVE-2020-0404	0	at fix
+kernel	5.10.43-android12-9	2020-09-01	CVE-2020-0404	1	kernel fixes ship in the -05 level; -01 is behind
+kernel	5.4.30-android11-2	2020-06-05	CVE-2020-12464	1	4.20<=v<5.4.36
+kernel	5.4.36	2020-06-05	CVE-2020-12464	0	end-exclusive bound
+kernel	5.4.35	2020-08-05	CVE-2020-12464	0	backport: in range, SPL at fix
+kernel	5.10.43	2020-06-05	CVE-2020-12464	0	newer than every range
+kernel	5.6.7	2020-06-05	CVE-2020-12464	1	5.5<=v<5.6.8
+kernel	4.19.128-g1	2020-06-05	CVE-2018-20669	1	4.15<=v<4.19.129
+kernel	4.19.129	2020-06-05	CVE-2018-20669	0	end-exclusive bound
+kernel	4.19.128	unknown	CVE-2018-20669	0	malformed SPL: no verdict
+kernel	4.4.9	2020-06-05	CVE-2018-20669	0	below 4.13 start
+app	com.android.chrome	117.0.5938.60	CVE-2023-5187	1	< 117.0.5938.132; lexically .60 > .132
+app	com.android.chrome	117.0.5938.132	CVE-2023-5187	0	end-exclusive
+app	com.android.chrome	117.0.5938.153	CVE-2023-5187	0	past fix
+app	com.android.chrome	116.0.5845.187	CVE-2023-5187	1	older major
+app	com.android.chrome	99.0.4844.88	CVE-2023-5187	1	lexically "99" > "117"
+app	com.google.android.webview	116.0.5845.187	CVE-2023-5187	1	WebView aliases to google:chrome
+app	com.android.webview	117.0.5938.140	CVE-2023-5187	0	past fix
+app	com.example.chromebrowser	100.0	CVE-2023-5187	0	no alias for this package
+app	com.android.chrome		CVE-2023-5187	0	no versionName
+app	com.android.chrome	80.0.3987.99	CVE-2020-6500	0	>= 80.0.3987.87
+app	com.android.chrome	80.0.3987.149	CVE-2020-6500	0	lexically .149 < .87
+app	com.android.chrome	79.0.3945.130	CVE-2020-6500	1	< 80.0.3987.87
+app	com.whatsapp	2.18.200	CVE-2018-6339	1	2.18.180 <= v < 2.18.295
+app	com.whatsapp	2.18.295	CVE-2018-6339	0	end-exclusive
+app	com.whatsapp	2.18.179	CVE-2018-6339	0	below start
+app	com.whatsapp	2.16.99	CVE-2017-8769	1	< 2.16.323; lexically .99 > .323
+app	com.whatsapp	2.17.1	CVE-2017-8769	0	past fix
+app	org.telegram.messenger	4.9.1	CVE-2018-20436	1	exact version 4.9.1
+app	org.telegram.messenger	4.9.10	CVE-2018-20436	0	not 4.9.1
+app	org.telegram.messenger	4.9.0	CVE-2018-20436	0	not 4.9.1
+app	org.mozilla.firefox	84.1.4	CVE-2021-23957	1	< 85.0
+app	org.mozilla.firefox	85.0	CVE-2021-23957	0	end-exclusive
+app	org.mozilla.firefox	85.0.1	CVE-2021-23957	0	past fix
+app	org.mozilla.firefox	100.2.0	CVE-2021-23957	0	lexically "100" < "85"

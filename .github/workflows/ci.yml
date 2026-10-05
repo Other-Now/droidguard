@@ -1,0 +1,94 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  # Native core on the host: unit tests + precision/recall vs the naive baseline.
+  native-host:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build
+        run: |
+          cmake -S native-host -B build-host -DCMAKE_BUILD_TYPE=Release
+          cmake --build build-host -j
+      - name: Unit tests
+        run: ./build-host/dg_unit app/src/main/assets/rules.tsv
+      - name: Precision / recall
+        run: |
+          ./build-host/dg_eval app/src/main/assets/rules.tsv data/labels.tsv --min-f1 1.0
+          mkdir -p out && ./build-host/dg_eval app/src/main/assets/rules.tsv data/labels.tsv --json > out/eval.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: eval
+          path: out/
+
+  # Kotlin twin on the JVM + both APKs (NDK build for x86_64 and arm64).
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - uses: gradle/actions/setup-gradle@v4
+      - name: JVM tests + assemble
+        run: ./gradlew --no-daemon testDebugUnitTest assembleDebug assembleRelease
+      - uses: actions/upload-artifact@v4
+        with:
+          name: apks
+          path: app/build/outputs/apk/**/*.apk
+
+  # Instrumented tests on the emulator across three Android releases. Linux
+  # runners expose /dev/kvm, which the x86_64 emulator needs to be usable.
+  emulator:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        api-level: [29, 31, 34]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Pre-build test APKs (outside the emulator's time budget)
+        run: ./gradlew --no-daemon -Pdg.testBuildType=release assembleRelease assembleReleaseAndroidTest
+      - name: Instrumented tests (release build, so the benchmark is not debuggable)
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ matrix.api-level }}
+          target: google_apis
+          arch: x86_64
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
+          script: |
+            adb logcat -c
+            ./gradlew --no-daemon -Pdg.testBuildType=release connectedReleaseAndroidTest || (adb logcat -d -s DGRESULT AndroidRuntime TestRunner > out-fail.txt; exit 1)
+            mkdir -p results-ci
+            adb logcat -d -s DGRESULT:I > results-ci/dgresult-api${{ matrix.api-level }}.log
+            adb shell getprop ro.build.version.security_patch > results-ci/spl-api${{ matrix.api-level }}.txt
+      - name: Collect test reports
+        if: always()
+        run: |
+          mkdir -p results-ci
+          cp -r app/build/outputs/androidTest-results results-ci/ 2>/dev/null || true
+          cp -r app/build/reports/androidTests results-ci/reports 2>/dev/null || true
+          cp out-fail.txt results-ci/ 2>/dev/null || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: emulator-api${{ matrix.api-level }}
+          path: results-ci/

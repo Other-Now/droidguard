@@ -1,0 +1,301 @@
+Cmdline: /system/bin/simpleperf record --app dev.droidguard --add-meta-info app_type=profileable --in-app --tracepoint-events /data/local/tmp/tracepoint_events --out-fd 3 --stop-signal-fd 4 -e cpu-clock -f 4000 --call-graph fp --duration 6
+Arch: x86_64
+Event: cpu-clock (type 1, config 0)
+Samples: 8157
+Event count: 2039250000
+
+Overhead | Shared Object | Symbol
+13.61% | /apex/com.android.art/lib64/libart.so | art::JNI<false>::GetStringLength(_JNIEnv*, _jstring*)
+13.15% | /apex/com.android.art/lib64/libart.so | art::JNI<false>::GetStringUTFLength(_JNIEnv*, _jstring*)
+12.82% | /apex/com.android.art/lib64/libart.so | art::JNI<false>::GetStringUTFRegion(_JNIEnv*, _jstring*, int, int, char*)
+6.57% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86d1d2a7]
+6.49% | /apex/com.android.art/lib64/libart.so | art::JNI<false>::NewLocalRef(_JNIEnv*, _jobject*)
+4.92% | [JIT app cache] | art_jni_trampoline
+4.88% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | std::__ndk1::__hash_const_iterator<std::__ndk1::__hash_node<std::__ndk1::__hash_value_type<std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char> >, std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char> > >, void*>*> std::__ndk1::__hash_table<std::__ndk1::__hash_value_type<std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char> >, std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char> > >, std::__ndk1::__unordered_map_hasher<std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char> >, std::__ndk1::__hash_value_type<std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char> >, std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char> > >, std::__ndk1::hash<std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char> > >, std::__ndk1::equal_to<std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char> > >, true>, std::__ndk1::__unordered_map_equal<std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char> >, std::__ndk1::__hash_value_type<std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char> >, std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char> > >, std::__ndk1::equal_to<std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char> > >, std::__ndk1::hash<std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char> > >, true>, std::__ndk1::allocator<std::__ndk1::__hash_value_type<std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char> >, std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char> > > > >::find<std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char> > >(std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char> > const&) const
+2.53% | /apex/com.android.art/lib64/libart.so | art::gc::collector::ConcurrentCopying::VisitRoots(art::mirror::CompressedReference<art::mirror::Object>**, unsigned long, art::RootInfo const&)
+2.13% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86d196c4]
+2.04% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff87cb2625]
+1.62% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86d1d2dd]
+1.46% | [JIT app cache] | dev.droidguard.core.NativeMatcher.matchApp
+1.36% | /apex/com.android.art/lib64/libart.so | art_quick_alloc_object_initialized_region_tlab
+1.31% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | Java_dev_droidguard_core_NativeMatcher_nativeMatchApp
+1.30% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | dg::Matcher::match_app(std::__ndk1::basic_string_view<char, std::__ndk1::char_traits<char> >, std::__ndk1::basic_string_view<char, std::__ndk1::char_traits<char> >) const
+1.25% | /system/framework/x86_64/boot.oat | java.util.ArrayList.<init>
+1.16% | /apex/com.android.art/lib64/libart.so | art::InternTable::Table::VisitRoots(art::RootVisitor*)
+1.13% | /apex/com.android.art/lib64/libart.so | bool art::gc::collector::ConcurrentCopying::TestAndSetMarkBitForRef<false>(art::mirror::Object*)
+0.99% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86e976c2]
+0.98% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff87c939b7]
+0.93% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86d2481b]
+0.87% | /apex/com.android.art/lib64/libart.so | art::ClassLinker::VisitClassRoots(art::RootVisitor*, art::VisitRootFlags)
+0.82% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86df5717]
+0.80% | /apex/com.android.art/lib64/libart.so | art::jni::LocalReferenceTable::Add(art::jni::LRTSegmentState, art::ObjPtr<art::mirror::Object>, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >*)
+0.63% | /apex/com.android.runtime/lib64/bionic/libc.so | memcpy
+0.48% | /apex/com.android.art/lib64/libart.so | _jobject* art::JNIEnvExt::AddLocalReference<_jobject*>(art::ObjPtr<art::mirror::Object>)
+0.44% | [JIT app cache] | dev.droidguard.ScanBenchmarkTest.jniMissLoop
+0.43% | /apex/com.android.art/lib64/libart.so | art::JavaVMExt::DecodeGlobal(void*)
+0.39% | /apex/com.android.art/lib64/libart.so | void art::gc::collector::ConcurrentCopying::MarkRoot<false>(art::Thread*, art::mirror::CompressedReference<art::mirror::Object>*)
+0.31% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+28b3e]
+0.28% | /apex/com.android.art/lib64/libart.so | void art::gc::collector::ConcurrentCopying::Process<false>(art::mirror::Object*, art::MemberOffset)
+0.27% | /apex/com.android.art/lib64/libart.so | void art::gc::collector::ConcurrentCopying::Process<true>(art::mirror::Object*, art::MemberOffset)
+0.27% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+28b22]
+0.26% | /apex/com.android.art/lib64/libart.so | art::gc::collector::ConcurrentCopying::ScanImmuneObject(art::mirror::Object*)
+0.23% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+28b30]
+0.21% | /apex/com.android.art/lib64/libart.so | art::Thread::DecodeGlobalJObject(_jobject*) const
+0.18% | /apex/com.android.art/lib64/libart.so | art::ReadBarrier::Mark(art::mirror::Object*)
+0.18% | /apex/com.android.art/lib64/libart.so | art::gc::collector::ConcurrentCopying::CaptureRootsForMarkingVisitor<false>::VisitRoots(art::mirror::CompressedReference<art::mirror::Object>**, unsigned long, art::RootInfo const&)
+0.18% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86e67d45]
+0.17% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | @plt
+0.17% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+23f75]
+0.17% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+28b0e]
+0.17% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff87c73a5a]
+0.16% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+23f87]
+0.13% | /apex/com.android.art/lib64/libart.so | void art::mirror::DexCache::VisitReferences<true, (art::VerifyObjectFlags)0, (art::ReadBarrierOption)1, art::gc::collector::ConcurrentCopying::RefFieldsVisitor<false> >(art::ObjPtr<art::mirror::Class>, art::gc::collector::ConcurrentCopying::RefFieldsVisitor<false> const&)
+0.13% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+23fd4]
+0.13% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86e5a0c0]
+0.13% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff880000ca]
+0.12% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+23ed1]
+0.12% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+23efc]
+0.12% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+23f6a]
+0.12% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+28ad0]
+0.11% | /apex/com.android.art/lib64/libart.so | art::gc::collector::ConcurrentCopying::Copy(art::Thread*, art::mirror::Object*, art::mirror::Object*, art::MemberOffset)
+0.11% | /apex/com.android.art/lib64/libart.so | art::gc::collector::ConcurrentCopying::CopyingPhase()
+0.11% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+23f93]
+0.11% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+23f9b]
+0.11% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+23ff8]
+0.11% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+2402c]
+0.11% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+241e6]
+0.11% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+255d1]
+0.11% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+28b41]
+0.11% | /system/lib64/libcutils.so | atrace_get_enabled_tags
+0.10% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+23eff]
+0.10% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+23f0d]
+0.10% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+23f19]
+0.10% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+2416c]
+0.10% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+28b05]
+0.09% | /apex/com.android.art/lib64/libart.so | artAllocObjectFromCodeInitializedRegionTLAB
+0.09% | /apex/com.android.art/lib64/libart.so | art_quick_read_barrier_mark_reg00
+0.09% | /apex/com.android.art/lib64/libart.so | void art::mirror::Object::VisitReferences<true, (art::VerifyObjectFlags)0, (art::ReadBarrierOption)1, art::gc::collector::ConcurrentCopying::ComputeLiveBytesAndMarkRefFieldsVisitor<false>, art::gc::collector::ConcurrentCopying::ComputeLiveBytesAndMarkRefFieldsVisitor<false> >(art::gc::collector::ConcurrentCopying::ComputeLiveBytesAndMarkRefFieldsVisitor<false> const&, art::gc::collector::ConcurrentCopying::ComputeLiveBytesAndMarkRefFieldsVisitor<false> const&)
+0.09% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+23ec8]
+0.09% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+25234]
+0.09% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+25342]
+0.09% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+2567c]
+0.09% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff87054e34]
+0.07% | /apex/com.android.art/lib64/libart.so | art::gc::collector::ConcurrentCopying::ImmuneSpaceScanObjVisitor::Callback(art::mirror::Object*, void*)
+0.07% | /apex/com.android.art/lib64/libart.so | void art::mirror::Class::VisitReferences<true, (art::VerifyObjectFlags)0, (art::ReadBarrierOption)1, art::gc::collector::ConcurrentCopying::RefFieldsVisitor<false> >(art::ObjPtr<art::mirror::Class>, art::gc::collector::ConcurrentCopying::RefFieldsVisitor<false> const&)
+0.07% | /apex/com.android.art/lib64/libart.so | void art::mirror::Class::VisitReferences<true, (art::VerifyObjectFlags)0, (art::ReadBarrierOption)1, art::gc::collector::ConcurrentCopying::RefFieldsVisitor<true> >(art::ObjPtr<art::mirror::Class>, art::gc::collector::ConcurrentCopying::RefFieldsVisitor<true> const&)
+0.07% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+23ec4]
+0.07% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+23ee2]
+0.07% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+23f2f]
+0.07% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+23fd0]
+0.07% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+23fdc]
+0.07% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+25236]
+0.07% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+25349]
+0.07% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+255d8]
+0.07% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+255e1]
+0.07% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+28ae9]
+0.06% | /apex/com.android.art/lib64/libart.so | art::gc::Heap::AllocWithNewTLAB(art::Thread*, art::gc::AllocatorType, unsigned long, bool, unsigned long*, unsigned long*, unsigned long*)
+0.06% | /apex/com.android.art/lib64/libart.so | void art::ArtMethod::VisitRoots<(art::ReadBarrierOption)1, true, art::gc::collector::ConcurrentCopying::ComputeLiveBytesAndMarkRefFieldsVisitor<true> const>(art::gc::collector::ConcurrentCopying::ComputeLiveBytesAndMarkRefFieldsVisitor<true> const&, art::PointerSize)
+0.06% | /apex/com.android.art/lib64/libart.so | void art::mirror::DexCache::VisitReferences<true, (art::VerifyObjectFlags)0, (art::ReadBarrierOption)1, art::gc::collector::ConcurrentCopying::RefFieldsVisitor<true> >(art::ObjPtr<art::mirror::Class>, art::gc::collector::ConcurrentCopying::RefFieldsVisitor<true> const&)
+0.06% | /apex/com.android.art/lib64/libart.so | void art::mirror::Object::VisitReferences<true, (art::VerifyObjectFlags)0, (art::ReadBarrierOption)1, art::gc::collector::ConcurrentCopying::RefFieldsVisitor<true>, art::gc::collector::ConcurrentCopying::RefFieldsVisitor<true> >(art::gc::collector::ConcurrentCopying::RefFieldsVisitor<true> const&, art::gc::collector::ConcurrentCopying::RefFieldsVisitor<true> const&)
+0.06% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+23ec1]
+0.06% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+23eca]
+0.06% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+23f26]
+0.06% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+23fe4]
+0.06% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+2400a]
+0.06% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+241de]
+0.06% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+28ad4]
+0.06% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+28f06]
+0.06% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86ff4264]
+0.06% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff87cb2471]
+0.05% | /apex/com.android.art/lib64/libart.so | art::CodeInfo::GetStackMapForNativePcOffset(unsigned long, art::InstructionSet) const
+0.05% | /apex/com.android.art/lib64/libart.so | art::gc::accounting::ModUnionTableReferenceCache::VisitObjects(void (*)(art::mirror::Object*, void*), void*)
+0.05% | /apex/com.android.art/lib64/libart.so | art::gc::accounting::SpaceBitmap<4096ul>::CopyFrom(art::gc::accounting::SpaceBitmap<4096ul>*)
+0.05% | /apex/com.android.art/lib64/libart.so | art::gc::collector::ConcurrentCopying::IsMarked(art::mirror::Object*)
+0.05% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+23ecc]
+0.05% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+23eed]
+0.05% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+23f10]
+0.05% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+2523a]
+0.05% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+28b25]
+0.05% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86ddf830]
+0.05% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff8702d5c0]
+0.05% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff87c73b61]
+0.04% | /apex/com.android.art/lib64/libart.so | art::RuntimeImageHelper::CopyClass(art::ObjPtr<art::mirror::Class>)
+0.04% | /apex/com.android.art/lib64/libart.so | art::gc::collector::ConcurrentCopying::GrayImmuneObjectVisitor<true>::Callback(art::mirror::Object*, void*)
+0.04% | /apex/com.android.art/lib64/libart.so | art::gc::collector::ConcurrentCopying::ThreadFlipVisitor::VisitRoots(art::mirror::Object***, unsigned long, art::RootInfo const&)
+0.04% | /apex/com.android.art/lib64/libart.so | art::x86_64::X86_64Context::FillCalleeSaves(unsigned char*, art::QuickMethodFrameInfo const&)
+0.04% | /apex/com.android.art/lib64/libart.so | art_quick_read_barrier_mark_reg02
+0.04% | /apex/com.android.art/lib64/libart.so | void art::ArtMethod::VisitRoots<(art::ReadBarrierOption)1, true, art::gc::collector::ConcurrentCopying::ComputeLiveBytesAndMarkRefFieldsVisitor<false> const>(art::gc::collector::ConcurrentCopying::ComputeLiveBytesAndMarkRefFieldsVisitor<false> const&, art::PointerSize)
+0.04% | /apex/com.android.art/lib64/libart.so | void art::mirror::Class::VisitReferences<true, (art::VerifyObjectFlags)0, (art::ReadBarrierOption)1, art::gc::collector::ConcurrentCopying::ComputeLiveBytesAndMarkRefFieldsVisitor<true> >(art::ObjPtr<art::mirror::Class>, art::gc::collector::ConcurrentCopying::ComputeLiveBytesAndMarkRefFieldsVisitor<true> const&)
+0.04% | /apex/com.android.art/lib64/libart.so | void art::mirror::DexCache::VisitReferences<true, (art::VerifyObjectFlags)0, (art::ReadBarrierOption)1, art::gc::collector::ConcurrentCopying::ComputeLiveBytesAndMarkRefFieldsVisitor<true> >(art::ObjPtr<art::mirror::Class>, art::gc::collector::ConcurrentCopying::ComputeLiveBytesAndMarkRefFieldsVisitor<true> const&)
+0.04% | /apex/com.android.art/lib64/libartbase.so | art::metrics::MetricsCounter<(art::metrics::DatumId)12, unsigned long>::Add(unsigned long)
+0.04% | /apex/com.android.runtime/lib64/bionic/libc.so | __system_property_serial
+0.04% | /apex/com.android.runtime/lib64/bionic/libc.so | syscall
+0.04% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+23ec6]
+0.04% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+23f0a]
+0.04% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+23f6d]
+0.04% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+24020]
+0.04% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+24165]
+0.04% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+2417b]
+0.04% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+241d6]
+0.04% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+25245]
+0.04% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+25249]
+0.04% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+25677]
+0.04% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+28b0b]
+0.04% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+28b37]
+0.04% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+28b3a]
+0.04% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86d1d2e4]
+0.04% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86fb51c2]
+0.04% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86fb6950]
+0.04% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff8702d5c1]
+0.04% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff8704fe18]
+0.04% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff870502b4]
+0.04% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff87c73a83]
+0.04% | [vdso] | clock_gettime
+0.02% | /apex/com.android.art/lib64/libart.so | art::Mutex::ExclusiveUnlock(art::Thread*)
+0.02% | /apex/com.android.art/lib64/libart.so | art::ReferenceMapVisitor<art::RootCallbackVisitor, false>::VisitFrame()
+0.02% | /apex/com.android.art/lib64/libart.so | art::gc::collector::ConcurrentCopying::AddLiveBytesAndScanRef(art::mirror::Object*)
+0.02% | /apex/com.android.art/lib64/libart.so | art::gc::collector::ConcurrentCopying::ProcessMarkStackRef(art::mirror::Object*)
+0.02% | /apex/com.android.art/lib64/libart.so | art::gc::collector::ConcurrentCopying::PushOntoMarkStack(art::Thread*, art::mirror::Object*)
+0.02% | /apex/com.android.art/lib64/libart.so | art::mirror::Class::DescriptorHash()
+0.02% | /apex/com.android.art/lib64/libart.so | art_quick_read_barrier_mark_reg13
+0.02% | /apex/com.android.art/lib64/libart.so | void art::mirror::Class::VisitReferences<true, (art::VerifyObjectFlags)0, (art::ReadBarrierOption)1, art::gc::collector::ConcurrentCopying::ComputeLiveBytesAndMarkRefFieldsVisitor<false> >(art::ObjPtr<art::mirror::Class>, art::gc::collector::ConcurrentCopying::ComputeLiveBytesAndMarkRefFieldsVisitor<false> const&)
+0.02% | /apex/com.android.art/lib64/libart.so | void art::mirror::ClassLoader::VisitReferences<true, (art::VerifyObjectFlags)0, (art::ReadBarrierOption)1, art::gc::collector::ConcurrentCopying::ComputeLiveBytesAndMarkRefFieldsVisitor<true> >(art::ObjPtr<art::mirror::Class>, art::gc::collector::ConcurrentCopying::ComputeLiveBytesAndMarkRefFieldsVisitor<true> const&)
+0.02% | /apex/com.android.art/lib64/libart.so | void art::mirror::DexCache::VisitReferences<true, (art::VerifyObjectFlags)0, (art::ReadBarrierOption)1, art::gc::collector::ConcurrentCopying::ComputeLiveBytesAndMarkRefFieldsVisitor<false> >(art::ObjPtr<art::mirror::Class>, art::gc::collector::ConcurrentCopying::ComputeLiveBytesAndMarkRefFieldsVisitor<false> const&)
+0.02% | /apex/com.android.art/lib64/libart.so | void art::mirror::Object::VisitFieldsReferences<false, (art::VerifyObjectFlags)0, (art::ReadBarrierOption)1, art::gc::collector::ConcurrentCopying::ComputeLiveBytesAndMarkRefFieldsVisitor<false> >(unsigned int, art::gc::collector::ConcurrentCopying::ComputeLiveBytesAndMarkRefFieldsVisitor<false> const&)
+0.02% | /apex/com.android.art/lib64/libart.so | void art::mirror::Object::VisitFieldsReferences<false, (art::VerifyObjectFlags)0, (art::ReadBarrierOption)1, art::gc::collector::ConcurrentCopying::ComputeLiveBytesAndMarkRefFieldsVisitor<true> >(unsigned int, art::gc::collector::ConcurrentCopying::ComputeLiveBytesAndMarkRefFieldsVisitor<true> const&)
+0.02% | /apex/com.android.art/lib64/libartpalette.so | PaletteTraceIntegerValue
+0.02% | /apex/com.android.runtime/lib64/bionic/libc.so | memset_avx2
+0.02% | /apex/com.android.runtime/lib64/bionic/libc.so | scudo::Allocator<scudo::AndroidConfig, &(scudo_malloc_postinit)>::quarantineOrDeallocateChunk(scudo::Options, void*, scudo::Chunk::UnpackedHeader*, unsigned long)
+0.02% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+23ecd]
+0.02% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+23edb]
+0.02% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+23f06]
+0.02% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+23ff4]
+0.02% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+24000]
+0.02% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+24007]
+0.02% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+25257]
+0.02% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+28ad1]
+0.02% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+28ad6]
+0.02% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+28ad8]
+0.02% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+28adc]
+0.02% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86e2999d]
+0.02% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86e5a0a2]
+0.02% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86fb5235]
+0.02% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86ff84a3]
+0.02% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86ff87c1]
+0.02% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86ff89a7]
+0.02% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff87000e41]
+0.02% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff8701aaf8]
+0.02% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff8701ac6f]
+0.02% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff8701af36]
+0.02% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff8701d330]
+0.02% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff8704ff5f]
+0.02% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff8705030b]
+0.02% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff87358acf]
+0.02% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff87c739ee]
+0.02% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff87c73a1d]
+0.02% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff87c73a77]
+0.02% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff87c781f1]
+0.02% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff87c93eea]
+0.02% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff87ca0e59]
+0.02% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff87ca1a94]
+0.02% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff87cab748]
+0.01% | /apex/com.android.art/lib64/libart.so | art::Mutex::ExclusiveLock(art::Thread*)
+0.01% | /apex/com.android.art/lib64/libart.so | art::ReaderWriterMutex::ExclusiveLock(art::Thread*)
+0.01% | /apex/com.android.art/lib64/libart.so | art::TimingLogger::EndTiming()
+0.01% | /apex/com.android.art/lib64/libart.so | art::gc::Heap::RequestConcurrentGCAndSaveObject(art::Thread*, bool, unsigned int, art::ObjPtr<art::mirror::Object>*)
+0.01% | /apex/com.android.art/lib64/libart.so | art::gc::ReferenceProcessor::DelayReferenceReferent(art::ObjPtr<art::mirror::Class>, art::ObjPtr<art::mirror::Reference>, art::gc::collector::GarbageCollector*)
+0.01% | /apex/com.android.art/lib64/libart.so | art::gc::accounting::ModUnionTableCardCache::VisitObjects(void (*)(art::mirror::Object*, void*), void*)
+0.01% | /apex/com.android.art/lib64/libart.so | art::gc::accounting::ModUnionTableReferenceCache::ProcessCards()
+0.01% | /apex/com.android.art/lib64/libart.so | art::gc::collector::ConcurrentCopying::DelayReferenceReferent(art::ObjPtr<art::mirror::Class>, art::ObjPtr<art::mirror::Reference>)
+0.01% | /apex/com.android.art/lib64/libart.so | art::gc::collector::ConcurrentCopying::ProcessMarkStackForMarkingAndComputeLiveBytes()
+0.01% | /apex/com.android.art/lib64/libart.so | art::gc::collector::ImmuneSpaces::CreateLargestImmuneRegion()
+0.01% | /apex/com.android.art/lib64/libart.so | art::gc::space::RegionSpace::AsRegionSpace()
+0.01% | /apex/com.android.art/lib64/libart.so | art::gc::space::RegionSpace::ClearFromSpace(unsigned long*, unsigned long*, bool)
+0.01% | /apex/com.android.art/lib64/libart.so | art::gc::space::RegionSpace::RevokeThreadLocalBuffersLocked(art::Thread*, bool)
+0.01% | /apex/com.android.art/lib64/libart.so | void art::StackVisitor::WalkStack<(art::StackVisitor::CountTransitions)1>(bool)
+0.01% | /apex/com.android.art/lib64/libart.so | void art::mirror::ClassLoader::VisitReferences<true, (art::VerifyObjectFlags)0, (art::ReadBarrierOption)1, art::gc::collector::ConcurrentCopying::ComputeLiveBytesAndMarkRefFieldsVisitor<false> >(art::ObjPtr<art::mirror::Class>, art::gc::collector::ConcurrentCopying::ComputeLiveBytesAndMarkRefFieldsVisitor<false> const&)
+0.01% | /apex/com.android.art/lib64/libart.so | void art::mirror::Object::VisitReferences<true, (art::VerifyObjectFlags)0, (art::ReadBarrierOption)1, art::gc::collector::ConcurrentCopying::ComputeLiveBytesAndMarkRefFieldsVisitor<true>, art::gc::collector::ConcurrentCopying::ComputeLiveBytesAndMarkRefFieldsVisitor<true> >(art::gc::collector::ConcurrentCopying::ComputeLiveBytesAndMarkRefFieldsVisitor<true> const&, art::gc::collector::ConcurrentCopying::ComputeLiveBytesAndMarkRefFieldsVisitor<true> const&)
+0.01% | /apex/com.android.art/lib64/libart.so | void art::mirror::ObjectArray<art::mirror::Object>::VisitReferences<art::gc::collector::ConcurrentCopying::ComputeLiveBytesAndMarkRefFieldsVisitor<false> >(art::gc::collector::ConcurrentCopying::ComputeLiveBytesAndMarkRefFieldsVisitor<false> const&)
+0.01% | /apex/com.android.art/lib64/libart.so | void art::mirror::ObjectArray<art::mirror::Object>::VisitReferences<art::gc::collector::ConcurrentCopying::RefFieldsVisitor<false> >(art::gc::collector::ConcurrentCopying::RefFieldsVisitor<false> const&)
+0.01% | /apex/com.android.art/lib64/libartbase.so | art::NanoTime()
+0.01% | /apex/com.android.runtime/lib64/bionic/libc.so | scudo::Allocator<scudo::AndroidConfig, &(scudo_malloc_postinit)>::deallocate(void*, scudo::Chunk::Origin, unsigned long, unsigned long)
+0.01% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+23ec0]
+0.01% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+23f80]
+0.01% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+23fd1]
+0.01% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+23fd6]
+0.01% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+23fed]
+0.01% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+24004]
+0.01% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+24025]
+0.01% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+24028]
+0.01% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+24099]
+0.01% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+25231]
+0.01% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+25238]
+0.01% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+2523e]
+0.01% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+25343]
+0.01% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+25345]
+0.01% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+255da]
+0.01% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+255de]
+0.01% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+25678]
+0.01% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+28add]
+0.01% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+28ae3]
+0.01% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+28af3]
+0.01% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+28b2c]
+0.01% | /data/app/~~lPDpebaAS0hSW08eet-K0g==/dev.droidguard-xyN-iXLcrbhZm4PHDqagMA==/base.apk!/lib/x86_64/libdroidguard.so | libdroidguard.so[+28b33]
+0.01% | /system/lib64/libartpalette-system.so | @plt
+0.01% | /system/lib64/libartpalette-system.so | PaletteTraceIntegerValue
+0.01% | /system/lib64/libutils.so | android::elapsedRealtime()
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86d1d2d5]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86d2896f]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86ddf83c]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86df0550]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86df0575]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86df05a8]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86df0634]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86e29870]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86e298a6]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86e299ea]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86e5e938]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86e88c11]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86e97671]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86ea72ad]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86fb2ad2]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86fb5191]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86fb51a1]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86fb51f5]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86ff81f0]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86ff8265]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86ff846b]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86ff8951]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86ff8a5b]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86ff8e6a]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff86ff8e90]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff87000e30]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff8700df2e]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff8701a92a]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff8701aaa0]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff8701ab32]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff8701abae]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff8701ae2a]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff8701af2b]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff8701c2e3]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff8701c35f]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff8704fdcd]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff8704ff6f]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff8704ffb2]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff870502b0]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff870502e1]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff8705036b]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff87054dab]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff87055057]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff87358ad6]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff87c7399c]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff87c739c0]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff87c73a4e]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff87c73a97]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff87c781f0]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff87c97559]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff87ca1930]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff87ca1954]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff87ca19a2]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff87ca1a80]
+0.01% | [kernel.kallsyms] | [kernel.kallsyms][+ffffffff87cb245a]

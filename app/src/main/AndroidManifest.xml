@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Needed to see the full app inventory on Android 11+ (package visibility).
+         A Play-distributed app would need a policy justification for this; a
+         device-security scanner is one of the permitted use cases. -->
+    <uses-permission
+        android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackagesPermission" />
+
+    <!-- Only apps signed with the same key may bind the scan service. -->
+    <permission
+        android:name="dev.droidguard.permission.SCAN"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="dev.droidguard.permission.SCAN" />
+
+    <application
+        android:allowBackup="false"
+        android:label="droidguard"
+        android:theme="@android:style/Theme.Material.Light">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".ScanService"
+            android:exported="true"
+            android:permission="dev.droidguard.permission.SCAN"
+            android:process=":scanner" />
+
+        <!-- Lets simpleperf profile the release build without making it debuggable. -->
+        <profileable android:shell="true" />
+    </application>
+</manifest>

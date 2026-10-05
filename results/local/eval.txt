@@ -1,0 +1,7 @@
+75 labelled cases (29 positive)
+
+kind              matcher  P / R           naive  P / R
+app            100.0% / 100.0%       75.0% /  66.7%   (naive fp=2 fn=3)
+kernel         100.0% / 100.0%       42.9% /  75.0%   (naive fp=8 fn=2)
+platform       100.0% / 100.0%       80.0% / 100.0%   (naive fp=3 fn=0)
+all            100.0% / 100.0%       64.9% /  82.8%
